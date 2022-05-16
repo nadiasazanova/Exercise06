@@ -1,0 +1,58 @@
+#1
+def transform_to_row(infile, outfile):
+    with open('c:/temp/'+infile, 'r', encoding='utf-8') as file_in:
+        line = file_in.readline()
+    var = line.split(',')
+    with open('c:/temp/'+outfile, 'w', encoding='utf-8') as file_out:
+        for i in var:
+            file_out.write(i+'\n')
+
+infile = '1.txt'
+outfile = '2.txt'
+transform_to_row(infile, outfile)
+
+#2
+def add_greeting(infile, outfile):
+    text = 'Hello '
+    with open('c:/temp/' + infile, 'r', encoding='utf-8') as file_in:
+        lines = file_in.readlines()
+    with open('c:/temp/' + outfile, 'w', encoding='utf-8') as file_out:
+        for i in lines:
+            file_out.write(text+i)
+
+infile = '2.txt'
+outfile = '3.txt'
+add_greeting(infile, outfile)
+
+#3
+def strip_greeting(infile, outfile):
+    with open(infile,'r') as reader:
+        contents = reader.readlines()
+        with open(outfile, 'w') as writer:
+            for line in contents:
+                new_line = line.strip('Hello ')
+                writer.write(new_line)
+
+infile = 'newfile.txt'
+outfile = 'newfile_changed.txt'
+strip_greeting(infile, outfile)
+
+#4
+def combine_files(file1, file2, outfile):
+    with open(file1, 'r') as reader_file1:
+        with open(file2, 'r') as reader_file2:
+            file1_contents = reader_file1.readlines()
+            file2_contents = reader_file2.readlines()
+            if len(file1_contents) != len(file2_contents):
+                print("Only files with the same amount of lines are supported")
+                return
+            with open(outfile, 'w') as writer:
+                for i in range(len(file1_contents)):
+                    new_line = file1_contents[i].strip('\n') + " " + file2_contents[i]
+                    writer.write(new_line)
+
+file1 = 'Helloname.txt'
+file2 = 'Second_name.txt'
+outfile = 'Name_second name.txt'
+combine_files(file1, file2, outfile)
+
